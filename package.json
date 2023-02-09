@@ -1,0 +1,24 @@
+{
+  "name": "ric-chatgpt-app",
+  "version": "1.0.0",
+  "description": "Client and Server for a chat bot using OpenAI API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riccardopdev/ric-chatGPT.git"
+  },
+  "keywords": [
+    "AI",
+    "OpenAI",
+    "chat",
+    "bot"
+  ],
+  "author": "Riccardo riccardop@outlook.com",
+  "bugs": {
+    "url": "https://github.com/riccardopdev/ric-chatGPT/issues"
+  },
+  "homepage": "https://github.com/riccardopdev/ric-chatGPT#readme"
+}
