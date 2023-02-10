@@ -16,8 +16,9 @@ The client will communicate with the backend server to send all questions to an 
 The server will work as a proxy and implement all logic to communicate between the client and OpenAI API.  
 
 ### Fine-tuning the OpenAI model
-***Preparing the data for fine-tuning***
+***Preparing the data for fine-tuning***  
 One of the first steps to create a chat bot that can answer questions based on specific data is to provide this data to the OpenAI model.  
+
 This process is explained in the OpenAI Fine-tuning documentation:  
 <https://platform.openai.com/docs/guides/fine-tuning>  
 
@@ -29,7 +30,7 @@ completion: My favourite food is pizza.
 
 OpenAI documentation suggests to have at least a couple of hundreds prompt/completion to train a model.  
 
-***Formatting and converting fine-tuning data***
+***Formatting and converting fine-tuning data***  
 Once the .xlsx document is completed with the required data, we need to format and convert it to a .jsonl file before we can feed this to the model for fine-tuning.  
 
 To format and convet the data we can use the OpenAI CLI tool.  
