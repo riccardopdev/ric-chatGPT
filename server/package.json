@@ -11,5 +11,12 @@
     "proxy",
     "api"
   ],
-  "author": "Riccardo riccardop@outlook.com"
+  "author": "Riccardo riccardop@outlook.com",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3",
+    "nodemon": "^2.0.20"
+  }
 }
