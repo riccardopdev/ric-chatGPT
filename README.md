@@ -14,7 +14,7 @@ The client is a React app that serves as the interface for users to ask question
 ***Node + Express App.***  
 The server, built using Node and Express, acts as a proxy and implements the logic to communicate between the client and OpenAI API.  
 
-### Fine-tuning the OpenAI model  
+## Fine-tuning the OpenAI model  
 One of the crucial steps in creating a chat bot that can answer specific questions is to provide the relevant data to the OpenAI model. The following steps explain the process of fine-tuning the OpenAI model.  
 
 ***Preparing the data for fine-tuning***  
