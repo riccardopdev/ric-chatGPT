@@ -1,0 +1,15 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Proxy server to manage requests/responses between the React client and OpenAI API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "server",
+    "proxy",
+    "api"
+  ],
+  "author": "Riccardo riccardop@outlook.com"
+}
