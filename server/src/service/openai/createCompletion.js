@@ -6,9 +6,17 @@ const openai = new OpenAIApi(configuration);
 const createPrompt = require('./createPrompt');
 
 const createCompletion = async (prompt) => {
+    let promptResult;
+
+    try { 
+            promptResult = createPrompt(prompt);
+        } catch (error) {
+            return error;
+    }
+
     const response = await openai.createCompletion({
         model: process.env.OPENAI_MODEL_DAVINCI,
-        prompt: createPrompt(prompt),
+        prompt: promptResult,
         max_tokens: 256,
         temperature: 0,
         stop: ['\n']
