@@ -6,7 +6,6 @@ if(results.error) {
 
 const express = require('express');
 const app = express();
-const createCompletion = require('./service/openai/createCompletion');
 
 const PORT = process.env.PORT_NUMBER || 8000;
 
