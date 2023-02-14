@@ -10,15 +10,18 @@ const createCompletion = require('./service/openai/createCompletion');
 
 const PORT = process.env.PORT_NUMBER || 8000;
 
+/* Routes */
+const apiRouter = require('./routes/api.router');
+
+//Allow us to parse the body to json
+app.use(express.json());
+
+app.use('/api', apiRouter);
+
 async function startServer() {
     app.listen(PORT, () => {
         console.log(`Listening on port: ${PORT}`);
     });
-
-    const prompt = 'Tell me about your work experience.';
-
-    // const response = await createCompletion(prompt);
-    // console.log(response.data.choices);
 }
 
 startServer();
