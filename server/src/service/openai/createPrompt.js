@@ -1,0 +1,9 @@
+/*This function take the original prompt, adds the end indicator ' ->', and returns the updated prompt.
+This is necessary for the openai model to understand when the prompt ends*/
+function createPrompt(prompt) {
+    const promptEndIndicator = ' ->';
+
+    return prompt + promptEndIndicator;
+}
+
+module.exports = createPrompt;
