@@ -11,6 +11,8 @@ const Chat = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        setCompletion('');
+
         try {
             const response = await axios.post(requestEndPoint, {
                 prompt
@@ -19,8 +21,9 @@ const Chat = () => {
             setCompletion(response.data[0].text);
             setPrompt('');
         } catch (error) {
-            //TODO Handle error
+            const errorMessage = 'Sorry, that didn\'t seem to work. Would you like to try again with a question regarding my work experience and career?'
             console.log(error);
+            setCompletion(errorMessage);
         }
     }
 
