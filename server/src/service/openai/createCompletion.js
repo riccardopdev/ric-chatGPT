@@ -5,18 +5,12 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 const createPrompt = require('./createPrompt');
 
+//This function is responsible to make the createCompletion request to the openai API endpoint
 const createCompletion = async (prompt) => {
-    let promptResult;
-
-    try { 
-            promptResult = createPrompt(prompt);
-        } catch (error) {
-            return error;
-    }
 
     const response = await openai.createCompletion({
         model: process.env.OPENAI_MODEL_DAVINCI,
-        prompt: promptResult,
+        prompt: createPrompt(prompt),
         max_tokens: 256,
         temperature: 0,
         stop: ['\n']

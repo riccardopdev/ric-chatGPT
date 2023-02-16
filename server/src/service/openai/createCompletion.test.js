@@ -7,7 +7,7 @@ it('should call openai.createCompletion once', async () => {
 
     openaiCreateCompletionSpy.mockImplementation(() => Promise.resolve({}));
 
-    await createCompletion('Test');
+    await createCompletion('test');
 
     expect(openaiCreateCompletionSpy).toHaveBeenCalledOnce();
 
@@ -19,7 +19,7 @@ it('should call openai.createCompletion and return an object', async () => {
 
     openaiCreateCompletionSpy.mockImplementation(() => Promise.resolve({}));
 
-    const response = await createCompletion('Test');
+    const response = await createCompletion('test');
 
     expect(response).toBeTypeOf('object');
 
