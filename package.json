@@ -4,7 +4,10 @@
   "description": "Client and Server for a chat bot using OpenAI API",
   "main": "index.js",
   "scripts": {
-    "test": "vitest --reporter verbose"
+    "test": "vitest --reporter verbose",
+    "devServer": "npm run devStart --prefix server",
+    "server": "npm start --prefix server",
+    "client": "npm start --prefix client"
   },
   "repository": {
     "type": "git",
