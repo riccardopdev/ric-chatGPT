@@ -1,3 +1,5 @@
+@import url("reset.css");
+
 :root {
     --main-color1-hsl: hsl(198, 100%, 10%);
     --main-color2-hsl: hsl(198, 100%, 20%);
