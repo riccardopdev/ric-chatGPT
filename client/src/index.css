@@ -11,6 +11,16 @@
     --main-color8-hsl: hsl(198, 100%, 80%);
     --main-color9-hsl: hsl(198, 100%, 90%);
 
+    --secondary-color1-hsl: hsl(32, 0%, 10%);
+    --secondary-color2-hsl: hsl(32, 0%, 20%);
+    --secondary-color3-hsl: hsl(32, 0%, 30%);
+    --secondary-color4-hsl: hsl(32, 0%, 40%);
+    --secondary-color5-hsl: hsl(32, 0%, 50%);
+    --secondary-color6-hsl: hsl(32, 0%, 60%);
+    --secondary-color7-hsl: hsl(32, 0%, 70%);
+    --secondary-color8-hsl: hsl(32, 0%, 80%);
+    --secondary-color9-hsl: hsl(32, 0%, 90%);
+
     --font-family-header: 'Rajdhani', arial, sans-serif;
     --font-family-paragraph: 'Montserrat', arial, sans-serif;
 }
