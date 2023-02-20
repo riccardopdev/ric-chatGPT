@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+
+import './Chat.css';
+
 import axios from 'axios';
 
 const Chat = () => {
@@ -27,15 +30,17 @@ const Chat = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input
-                type="text"
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-            />
-            <button type="submit">Ask me a question</button>
-            <p>{completion}</p>
-        </form>
+        <section className="chat-section">
+            <form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    value={prompt}
+                    onChange={(e) => setPrompt(e.target.value)}
+                />
+                <button type="submit">Ask me a question</button>
+                <p>{completion}</p>
+            </form>
+        </section>
     );
 }
 
