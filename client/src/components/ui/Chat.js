@@ -36,14 +36,18 @@ const Chat = () => {
         <section className="chat-section">
             <ChatHeader />
             <ChatMessages message='This is a prop message' />
+            <p>{completion}</p>
             <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
+                <textarea
+                    name="question"
+                    rows="3"
+                    placeholder="Type your question here..."
+                    maxLength="250"
                     value={prompt}
+                    wrap="hard"
                     onChange={(e) => setPrompt(e.target.value)}
                 />
-                <button type="submit">Ask me a question</button>
-                <p>{completion}</p>
+                <button type="submit">Submit question</button>
             </form>
         </section>
     );
