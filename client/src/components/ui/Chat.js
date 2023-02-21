@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import './Chat.css';
 
+import ChatHeader from './ChatHeader';
+
 import axios from 'axios';
 
 const Chat = () => {
@@ -31,6 +33,7 @@ const Chat = () => {
 
     return (
         <section className="chat-section">
+            <ChatHeader />
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"

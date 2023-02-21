@@ -1,16 +1,19 @@
 .chat-header {
     background: var(--main-color5-hsl);
-    background: -moz-linear-gradient(-45deg,  var(--main-color5-hsl) 0%, var(--main-color7-hsl));
-    background: -webkit-linear-gradient(-45deg,  var(--main-color5-hsl) 0%,var(--main-color7-hsl) 100%);
-    background: linear-gradient(135deg,  var(--main-color5-hsl) 0%,var(--main-color7-hsl) 100%);
+    background: -moz-linear-gradient(-45deg,  var(--main-color4-hsl) 0%, var(--main-color6-hsl));
+    background: -webkit-linear-gradient(-45deg,  var(--main-color4-hsl) 0%,var(--main-color6-hsl) 100%);
+    background: linear-gradient(135deg,  var(--main-color4-hsl) 0%,var(--main-color6-hsl) 100%);
+    padding: 1.5rem;
+    border-top-right-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
 }
 
 .chat-header .info img {
-    width: 6rem;
+    width: 7rem;
     height: auto;
     display: inline-block;
-    border-radius: 3rem;
-    border: 0.2rem var(--main-color5-hsl) solid;
+    border-radius: 3.5rem;
+    border: 0.3rem #fff solid;
     vertical-align: middle;
 }
 
