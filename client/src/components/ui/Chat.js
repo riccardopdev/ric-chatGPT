@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './Chat.css';
 
 import ChatHeader from './ChatHeader';
+import ChatMessages from './ChatMessages';
 
 import axios from 'axios';
 
@@ -34,6 +35,7 @@ const Chat = () => {
     return (
         <section className="chat-section">
             <ChatHeader />
+            <ChatMessages message='This is a prop message' />
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
