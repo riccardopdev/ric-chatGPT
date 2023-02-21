@@ -1,3 +1,11 @@
 .intro-section {
     margin: 1em 0;
 }
+
+.intro-section span {
+    display: inline-block;
+    background-color: #fff;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 0.2rem var(--main-color4-hsl) solid;
+}
