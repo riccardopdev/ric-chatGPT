@@ -30,5 +30,13 @@ p {
 }
 
 .main-container {
-    margin: 10% 20%;
+    margin: 5% auto;
+    width: 80%;
+    max-width: 960px;
+}
+
+@media (min-width: 576px) {
+    .main-container {
+        width: 60%;
+    }
 }
