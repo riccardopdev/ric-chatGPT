@@ -12,7 +12,7 @@ const Chat = () => {
     const [completion, setCompletion] = useState('');
 
     //TODO Dynamically set the endpoint depending on dev or production environment
-    const requestEndPoint = 'http://localhost:5000/api/openai';
+    const requestEndPoint = 'http://localhost:5050/api/openai';
 
     const handleSubmit = async (e) => {
         e.preventDefault();

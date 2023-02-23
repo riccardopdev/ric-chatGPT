@@ -8,13 +8,13 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
-const PORT = process.env.PORT_NUMBER || 8000;
+const PORT = process.env.PORT_NUMBER || 5050;
 
 /* Routes */
 const apiRouter = require('./routes/api.router');
 
-//Implement CORS. Allow React client on port 3000 to make requests to the server api on port 5000
-app.use(cors({origin: 'http://localhost:3000'}));
+//Implement CORS. Allow React client on port 3030 to make requests to the server api on port 5000
+app.use(cors({origin: 'http://localhost:3030'}));
 
 //Allow us to parse the body to json
 app.use(express.json());
