@@ -21,6 +21,11 @@ openaiRouter.post('/', async (req, res) => {
         return res.status(400).json({error: 'The request body must have a prompt parameter.'});
     }
 
+    //Check that the prompt parameter is a string
+    if(typeof prompt !== 'string') {
+        return res.status(400).json({error: 'The request body must have a prompt parameter of type "string".'});
+    }
+
     prompt = prompt.trim();
 
     //If the prompt is less than 10 characters, there is a possibility that is not a well formulated question
