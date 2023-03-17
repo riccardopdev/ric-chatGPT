@@ -4,51 +4,44 @@ import './Chat.css';
 
 import ChatHeader from './ChatHeader';
 import ChatMessages from './ChatMessages';
+import ChatForm from './ChatForm';
 
 import axios from 'axios';
 
+//CSS classes used by ChatMessage.js to style different messages
+const CHAT_MESSAGE_CLASS = {
+    ERROR: 'chat-messages-error',
+    PROMPT: 'chat-messages-prompt',
+    COMPLETION: 'chat-messages-completion',
+    LOADING: 'chat-messages-loading'
+}
+
 const Chat = () => {
-    const [prompt, setPrompt] = useState('');
-    const [completion, setCompletion] = useState('');
+    const [message, setMessage] = useState([{text: '', className: ''}]);
 
     //TODO Dynamically set the endpoint depending on dev or production environment
     const requestEndPoint = 'http://localhost:5050/api/openai';
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (textData) => {
 
+        setMessage([...message, {text: textData.text, className: CHAT_MESSAGE_CLASS.PROMPT}]);
         const errorMessage = 'Sorry, it seems that I am having some issues forwarding your request. Would you like to try again shortly?';
 
-        setCompletion('');
-
         try {
-            const response = await axios.post(requestEndPoint, {prompt});
-            setCompletion(response.data[0].text);
+            setMessage((previousMessages) => [...previousMessages, {text: 'Loading...', className: CHAT_MESSAGE_CLASS.LOADING}]);
+            const response = await axios.post(requestEndPoint, {prompt: textData.text});
+            setMessage((previousMessages) => [...previousMessages, {text: response.data[0].text, className: CHAT_MESSAGE_CLASS.COMPLETION}]);
         } catch (error) {
             console.log(error);
-            setCompletion(errorMessage);
+            setMessage((previousMessages) => [...previousMessages, {text: errorMessage, className: CHAT_MESSAGE_CLASS.ERROR}]);
         }
-
-        setPrompt('');
     }
 
     return (
         <section className="chat-section">
             <ChatHeader />
-            <ChatMessages message='This is a prop message' />
-            <p>{completion}</p>
-            <form onSubmit={handleSubmit}>
-                <textarea
-                    name="question"
-                    rows="3"
-                    placeholder="Type your question here..."
-                    maxLength="250"
-                    value={prompt}
-                    wrap="hard"
-                    onChange={(e) => setPrompt(e.target.value)}
-                />
-                <button type="submit">Submit question</button>
-            </form>
+            <ChatMessages message={message} />
+            <ChatForm onSubmit={handleSubmit} />
         </section>
     );
 }
