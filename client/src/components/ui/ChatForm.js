@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react';
 
 import './ChatForm.css';
 
+import Sanitize from '../util/Sanitize';
+
 const ChatForm = (props) => {
     const [text, setText] = useState('');
     const txtAreaRef = useRef();
@@ -9,7 +11,9 @@ const ChatForm = (props) => {
     const handleSubmit = (ev) => {
         ev.preventDefault();
 
-        props.onSubmit({text});
+        const sanitized = Sanitize(text);
+
+        props.onSubmit({text: sanitized});
         setText('');
         txtAreaRef.current.focus();
     }
