@@ -4,8 +4,14 @@
 
 .intro-section span {
     display: inline-block;
-    background-color: #fff;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    border: 0.2rem var(--main-color4-hsl) solid;
+    background: var(--secondary-color7-hsl);
+    background: -moz-linear-gradient(-45deg,  var(--secondary-color8-hsl) 0%, var(--secondary-color9-hsl));
+    background: -webkit-linear-gradient(-45deg,  var(--secondary-color8-hsl) 0%,var(--secondary-color9-hsl) 100%);
+    background: linear-gradient(135deg,  var(--secondary-color8-hsl) 0%,var(--secondary-color9-hsl) 100%);
+    margin: 0.5rem 0 0.5rem auto;
+    border: 1px solid;
+    border-radius: 1rem;
+    padding: 0.8rem;
+    line-height: 1.3rem;
+    border-color: var(--secondary-color7-hsl);
 }

@@ -29,7 +29,6 @@
     background: linear-gradient(135deg,  var(--secondary-color8-hsl) 0%,var(--secondary-color9-hsl) 100%);
     margin: 0.5rem 0 0.5rem auto;
     border-color: var(--secondary-color7-hsl);
-    /* color: #fff; */
 }
 
 .chat-messages-loading {
