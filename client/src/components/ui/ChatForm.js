@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import './ChatForm.css';
+
 const ChatForm = (props) => {
     const [text, setText] = useState('');
 
@@ -10,7 +12,7 @@ const ChatForm = (props) => {
     }
 
     return(
-        <form onSubmit={onSubmit}>
+        <form className='chat-form' onSubmit={onSubmit}>
             <textarea
                 name="question"
                 rows="3"
