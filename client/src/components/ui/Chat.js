@@ -21,6 +21,7 @@ const Chat = () => {
     let requestEndPoint = 'http://localhost:5050/api/openai';
 
     if(process.env.REACT_APP_ENVIRONMENT!=='local_dev') {
+        console.log('Making requests to live server on AWS Lambda');
         requestEndPoint = process.env.REQUEST_END_POINT;
     }
 
