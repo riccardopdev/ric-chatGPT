@@ -4,6 +4,7 @@ if(results.error) {
     throw results.error;
 }
 
+const serverless = require('serverless-http');
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -21,10 +22,14 @@ app.use(express.json());
 
 app.use('/api', apiRouter);
 
-async function startServer() {
+//RUN LOCALLY
+/* async function startServer() {
     app.listen(PORT, () => {
         console.log(`Listening on port: ${PORT}`);
     });
 }
 
-startServer();
+startServer(); */
+
+//RUN ON AWS LAMBDA
+module.exports.handler = serverless(app);
