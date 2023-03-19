@@ -31,7 +31,7 @@ if(process.env.ENVIRONMENT === 'local_dev') {
     }
 
     startServer();
-} else {
-    //RUN ON AWS LAMBDA
-    module.exports.handler = serverless(app);
 }
+
+//RUN ON AWS LAMBDA
+module.exports.handler = serverless(app);
