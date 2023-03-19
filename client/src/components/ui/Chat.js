@@ -18,9 +18,11 @@ const CHAT_MESSAGE_CLASS = {
 
 const Chat = () => {
     const [message, setMessage] = useState([{text: '', className: ''}]);
+    let requestEndPoint = 'http://localhost:5050/api/openai';
 
-    //TODO Dynamically set the endpoint depending on dev or production environment
-    const requestEndPoint = 'http://localhost:5050/api/openai';
+    if(process.env.REACT_APP_ENVIRONMENT!=='local_dev') {
+        requestEndPoint = process.env.REQUEST_END_POINT;
+    }
 
     const handleSubmit = async (textData) => {
 
