@@ -22,14 +22,16 @@ app.use(express.json());
 
 app.use('/api', apiRouter);
 
-//RUN LOCALLY
-/* async function startServer() {
-    app.listen(PORT, () => {
-        console.log(`Listening on port: ${PORT}`);
-    });
+if(process.env.ENVIRONMENT === 'local_dev') {
+    //RUN LOCALLY
+    async function startServer() {
+        app.listen(PORT, () => {
+            console.log(`Listening on port: ${PORT}`);
+        });
+    }
+
+    startServer();
+} else {
+    //RUN ON AWS LAMBDA
+    module.exports.handler = serverless(app);
 }
-
-startServer(); */
-
-//RUN ON AWS LAMBDA
-module.exports.handler = serverless(app);
