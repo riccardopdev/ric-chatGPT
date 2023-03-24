@@ -26,29 +26,36 @@ openaiRouter.post('/', async (req, res) => {
         return res.status(400).json({error: 'The request body must have a prompt parameter of type "string".'});
     }
 
-    prompt = prompt.trim();
+    try {
+        prompt = prompt.trim();
 
-    //If the prompt is less than 10 characters, there is a possibility that is not a well formulated question
-    if(prompt.length < 10) {
-        response = {
-            data: {
-                choices: [
-                    {
-                        text: replyToInvalidPrompt
-                    }
-                ]
-            }
-        };
+        //If the prompt is less than 10 characters, there is a possibility that is not a well formulated question
+        if(prompt.length < 10) {
+            response = {
+                data: {
+                    choices: [
+                        {
+                            text: replyToInvalidPrompt
+                        }
+                    ]
+                }
+            };
 
-    } else {
-        //Make the request to openai
-        response = await createCompletion(prompt);
+        } else {
+            //Make the request to openai
+            response = await createCompletion(prompt);
 
-        //Check if openai responded with ' ?' which means the user might have asked an improper or not valid question
-        if(response.data.choices[0].text === ' ?') response.data.choices[0].text = replyToInvalidQuestion;
+            //Check if openai responded with ' ?' which means the user might have asked an improper or not valid question
+            if(response.data.choices[0].text === ' ?') response.data.choices[0].text = replyToInvalidQuestion;
+        }
+
+        return res.status(200).json({
+            success: true,
+            message: response.data.choices[0].text
+        });
+    } catch (error) {
+        console.log(error.message);
     }
-
-    return res.status(200).json(response.data.choices);
 });
 
 module.exports = openaiRouter;
