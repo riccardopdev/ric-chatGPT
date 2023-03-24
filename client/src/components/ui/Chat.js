@@ -33,7 +33,7 @@ const Chat = () => {
         try {
             setMessage((previousMessages) => [...previousMessages, {text: 'Loading...', className: CHAT_MESSAGE_CLASS.LOADING}]);
             const response = await axios.post(requestEndPoint, {prompt: textData.text});
-            setMessage((previousMessages) => [...previousMessages, {text: response.data[0].text, className: CHAT_MESSAGE_CLASS.COMPLETION}]);
+            setMessage((previousMessages) => [...previousMessages, {text: response.data.message, className: CHAT_MESSAGE_CLASS.COMPLETION}]);
         } catch (error) {
             console.log(error);
             setMessage((previousMessages) => [...previousMessages, {text: errorMessage, className: CHAT_MESSAGE_CLASS.ERROR}]);
