@@ -16,9 +16,11 @@ const CHAT_MESSAGE_CLASS = {
     LOADING: 'chat-messages-loading'
 }
 
+const ERROR_MESSAGE = 'Sorry, it seems that I am having some issues forwarding your request. Would you like to try again shortly?';
+
 const Chat = () => {
     const [message, setMessage] = useState([{text: '', className: ''}]);
-    let requestEndPoint = 'http://localhost:5050/api/openai';
+    let requestEndPoint = 'http://localhost:5050/api/openais';
 
     if(process.env.REACT_APP_ENVIRONMENT!=='local_dev') {
         console.log('Making requests to live server on AWS Lambda');
@@ -27,16 +29,21 @@ const Chat = () => {
 
     const handleSubmit = async (textData) => {
 
+        //Show user question on the chat
         setMessage([...message, {text: textData.text, className: CHAT_MESSAGE_CLASS.PROMPT}]);
-        const errorMessage = 'Sorry, it seems that I am having some issues forwarding your request. Would you like to try again shortly?';
 
         try {
+            //Show loading message
             setMessage((previousMessages) => [...previousMessages, {text: 'Loading...', className: CHAT_MESSAGE_CLASS.LOADING}]);
+
+            //Send request to nodejs/express proxy
             const response = await axios.post(requestEndPoint, {prompt: textData.text});
+
+            //Show the response from openai API sent back to nodejs/express proxy
             setMessage((previousMessages) => [...previousMessages, {text: response.data.message, className: CHAT_MESSAGE_CLASS.COMPLETION}]);
         } catch (error) {
             console.log(error);
-            setMessage((previousMessages) => [...previousMessages, {text: errorMessage, className: CHAT_MESSAGE_CLASS.ERROR}]);
+            setMessage((previousMessages) => [...previousMessages, {text: ERROR_MESSAGE, className: CHAT_MESSAGE_CLASS.ERROR}]);
         }
     }
 
