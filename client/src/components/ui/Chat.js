@@ -20,7 +20,7 @@ const ERROR_MESSAGE = 'Sorry, it seems that I am having some issues forwarding y
 
 const Chat = () => {
     const [message, setMessage] = useState([{text: '', className: ''}]);
-    let requestEndPoint = 'http://localhost:5050/api/openais';
+    let requestEndPoint = 'http://localhost:5050/api/openai';
 
     if(process.env.REACT_APP_ENVIRONMENT!=='local_dev') {
         console.log('Making requests to live server on AWS Lambda');
