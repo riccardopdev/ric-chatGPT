@@ -3,6 +3,7 @@ const openaiRouter = express.Router();
 
 const createCompletion = require('../../service/openai/createCompletion');
 const createEmbeddings = require('../../service/openai/createEmbeddings');
+const getSimilarityContext = require('../../util/getSimilarityContext');
 
 openaiRouter.get('/', async (req, res) => {
     //Return status code 405 = Method Not Allowed
@@ -11,9 +12,10 @@ openaiRouter.get('/', async (req, res) => {
 
 openaiRouter.post('/', async (req, res) => {
     //Retrieve the prompt parameter from the request body
-    let prompt = req.body.prompt;
-    let completionResponse;
-    let embeddingResponse;
+    let prompt = req.body.prompt; //Contains the question from the user
+    let embeddingResponse; //Will store the embeddings value for the user's question
+    let contextResponse; //Will store the context to be used for the completion request to OpenAI API
+    let completionResponse; //Will store the completion response from OpenAI API
 
     const replyToInvalidPrompt = 'Sorry, that didn\'t seem to work. Would you like to try again with a question regarding my work experience and career?';
     const replyToInvalidQuestion = 'Please, ask me a question regarding my work experience and career.';
@@ -33,12 +35,21 @@ openaiRouter.post('/', async (req, res) => {
         prompt = prompt.trim();
 
         embeddingResponse = await createEmbeddings(prompt);
-        console.log(embeddingResponse)
     } catch (error) {
-        console.log('Error while requesting prompt embedding to OpenAI API');
+        console.log('Error while requesting prompt embedding to OpenAI API.');
         const statusNum = error.response.status ? error.response.status : 400;
-        
+
         return res.status(statusNum).json({message: 'Error while requesting prompt embedding to OpenAI API', error: error});
+    }
+
+    try {
+        contextResponse = await getSimilarityContext(embeddingResponse);
+
+        console.log(contextResponse);
+    } catch (error) {
+        console.log('Error while requesting context similarity.');
+
+        return res.status(400).json({message: 'Error while requesting context similarity', error: error});
     }
 
     try {
