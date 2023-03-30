@@ -6,21 +6,21 @@ const loadJSONFile = require('./loadJSONFile');
 const cosineSimilarity = require('./cosineSimilarity');
 
 const jsonFilePath = __dirname + '../../data/contextEmbeddings.json'; //.json file with original context and embeddings values
-const contextResultValues = {text: '', similarity: 0} //Object to hold initial context values
+const contextResultValues = {text: '', similarityScore: 0} //Object to hold initial context values
 
 const getSimilarityContext = async (questionEmbeddingValues) => {
     const contextEmbeddingValues = await loadJSONFile(jsonFilePath); //Load the json file with context and embedding data
 
     //Reset the context values
     contextResultValues.text = '';
-    contextResultValues.similarity = 0;
+    contextResultValues.similarityScore = 0;
 
     //For each item in the contextEmbeddingValues object we do a similarity check against the questionEmbeddingValues
     Object.keys(contextEmbeddingValues).forEach((item) => {
-        let similarity = cosineSimilarity(contextEmbeddingValues[item].embedding, questionEmbeddingValues.embedding);
+        let similarityScore = cosineSimilarity(contextEmbeddingValues[item].embedding, questionEmbeddingValues.embedding);
 
-        if(similarity > contextResultValues.similarity) {
-            contextResultValues.similarity = similarity;
+        if(similarityScore > contextResultValues.similarityScore) {
+            contextResultValues.similarityScore = similarityScore;
             contextResultValues.text = contextEmbeddingValues[item].text;
         }
     });
