@@ -17,9 +17,6 @@ openaiRouter.post('/', async (req, res) => {
     let contextResponse; //Will store the context to be used for the completion request to OpenAI API
     let completionResponse; //Will store the completion response from OpenAI API
 
-    const replyToInvalidPrompt = 'Sorry, that didn\'t seem to work. Would you like to try again with a question regarding my work experience and career?';
-    const replyToInvalidQuestion = 'Please, ask me a question regarding my work experience and career.';
-
     //Check if they body request contains a prompt parameter
     if(prompt === undefined || prompt === null) {
         return res.status(400).json({error: 'The request body must have a prompt parameter.'});
@@ -30,55 +27,44 @@ openaiRouter.post('/', async (req, res) => {
         return res.status(400).json({error: 'The request body must have a prompt parameter of type "string".'});
     }
 
+    //Request embedding for the prompt through the OpenAI API
     try {
         prompt = prompt.toString();
         prompt = prompt.trim();
 
         embeddingResponse = await createEmbeddings(prompt);
     } catch (error) {
-        console.log('Error while requesting prompt embedding to OpenAI API.');
+        console.log('Error while requesting prompt embedding through OpenAI API.');
+        console.log(error);
+
         const statusNum = error.response.status ? error.response.status : 400;
 
-        return res.status(statusNum).json({message: 'Error while requesting prompt embedding to OpenAI API', error: error});
+        return res.status(statusNum).json({message: 'Error while requesting prompt embedding through OpenAI API', error: error});
     }
 
+    //Do a comparison between the question and original data embedding values and return the closest context and similarity score
     try {
         contextResponse = await getSimilarityContext(embeddingResponse);
-
-        console.log(contextResponse);
     } catch (error) {
-        console.log('Error while requesting context similarity.');
+        console.log('Error while requesting context similarity comparison.');
+        console.log(error);
 
-        return res.status(400).json({message: 'Error while requesting context similarity', error: error});
+        return res.status(400).json({message: 'Error while requesting context similarity comparison.', error: error});
     }
 
+    //Request a completion to the OpenAI API and provide the context for prompt engineering
     try {
-        //If the prompt is less than 10 characters, there is a possibility that is not a well formulated question
-        if(prompt.length < 10) {
-            completionResponse = {
-                data: {
-                    choices: [
-                        {
-                            text: replyToInvalidPrompt
-                        }
-                    ]
-                }
-            };
-
-        } else {
-            //Make the request to openai
-            completionResponse = await createCompletion(prompt);
-
-            //Check if openai responded with ' ?' which means the user might have asked an improper or not valid question
-            if(completionResponse.data.choices[0].text === ' ?') completionResponse.data.choices[0].text = replyToInvalidQuestion;
-        }
+        completionResponse = await createCompletion(contextResponse, prompt);
 
         return res.status(200).json({
             success: true,
             message: completionResponse.data.choices[0].text
         });
     } catch (error) {
-        console.log(error.message);
+        console.log('Error while requesting completion through OpenAI API.');
+        console.log(error);
+
+        return res.status(400).json({message: 'Error while requesting completion through OpenAI API.', error: error});
     }
 });
 
