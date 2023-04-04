@@ -25,7 +25,7 @@ if(process.env.REACT_APP_ENVIRONMENT!=='local_dev') {
     requestEndPoint = process.env.REACT_APP_SERVER_PROD_ENDPOINT;
 } else {
     console.log('Making requests to local server.');
-    requestEndPoint = process.env.REACT_APP_SERVER_DEV_ENDPOINT;
+    requestEndPoint = process.env.REACT_APP_SERVER_DEV_ENDPOINT || 'http://localhost:5050/api/openai';
 }
 
 const Chat = () => {
