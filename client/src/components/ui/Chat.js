@@ -20,7 +20,7 @@ const ERROR_MESSAGE = 'Sorry, it seems that I am having some issues forwarding y
 
 let requestEndPoint;
 
-if(process.env.REACT_APP_ENVIRONMENT_PRODUCTION === true) {
+if(process.env.REACT_APP_ENVIRONMENT_PRODUCTION === 'true') {
     console.log('Making requests to live server on AWS Lambda.');
     requestEndPoint = process.env.REACT_APP_SERVER_PROD_ENDPOINT;
 } else {
