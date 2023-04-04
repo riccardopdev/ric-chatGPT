@@ -22,7 +22,7 @@ app.use(express.json());
 
 app.use('/api', apiRouter);
 
-if(process.env.ENVIRONMENT === 'local_dev') {
+if(process.env.ENVIRONMENT_PRODUCTION === 'false') {
     //RUN LOCALLY
     async function startServer() {
         app.listen(PORT, () => {
