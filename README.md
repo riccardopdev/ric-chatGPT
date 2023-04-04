@@ -18,8 +18,8 @@ The server, built using Node and Express, acts as a proxy and implements the log
 One of the crucial steps in creating a chat bot that can answer specific questions is to provide the relevant data to the OpenAI model.  
 There are two main options to feed the relevant data to the model.  
 
-**1. Fine-tuning**
-**2. Embeddings + Prompt Engineering**
+**1. Fine-tuning**  
+**2. Embeddings + Prompt Engineering**  
 
 For this project, I am using the second option: **Embeddings + Prompt Engineering**.  
 Below there are more details for how these two options work.  
