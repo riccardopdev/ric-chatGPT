@@ -6,7 +6,7 @@ function createPrompt(contextResponse, prompt) {
 
     if(contextResponse !== 'undefined' && contextResponse !== null && contextResponse.similarityScore > 0.65) {
         finalPrompt = `Answer the question as truthfully as possible based on the context, and if you're unsure of the answer, say "Sorry, I don't know".
-        Context:  ${contextResponse.text}
+        Context: ${contextResponse.text}
         Q: ${prompt}
         A:${promptEndIndicator}`;
     } else {
