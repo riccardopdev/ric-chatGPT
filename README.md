@@ -18,11 +18,11 @@ The server, built using Node and Express, acts as a proxy and implements the log
 One of the crucial steps in creating a chat bot that can answer specific questions is to provide the relevant data to the OpenAI model.  
 There are two main options to feed the relevant data to the model.  
 
-**1) Fine-tuning**
-**2) Embeddings + Prompt Engineering**
+**1. Fine-tuning**
+**2. Embeddings + Prompt Engineering**
 
-For this project I am using the second option **Embeddings + Prompt Engineering**.  
-Below are more details for how these two options work.  
+For this project, I am using the second option: **Embeddings + Prompt Engineering**.  
+Below there are more details for how these two options work.  
 
 ### Fine-tuning
 For the official OpenAI Fine-tuning documentation click this [link](https://platform.openai.com/docs/guides/fine-tuning).  
@@ -63,7 +63,7 @@ openai tools fine_tunes.prepare_data -f <PATH_TO_xls_FILE>
 
 The tool might suggest adding indicators at the beginning or end of **prompts** and **completions** to improve the model's performance.  
 
-***Feeding the data to the model for fine-tuning***
+***Feeding the data to the model for fine-tuning***  
 Once the data is formatted and the .jsonl file ready we can start the fine-tuning process.  
 To do this type below command in terminal:  
 
