@@ -2,10 +2,11 @@
 //It then compares the embeddings values of the question to the embeddings values of every item in a .json file using the cosine similarity function
 //If a similarity is found the item's text from the .json file is returned as the "context" for the question to be submitted to openai completion API
 //If not similarity is found null is returned instead of the context
+const path = require('path');
 const loadJSONFile = require('./loadJSONFile');
 const cosineSimilarity = require('./cosineSimilarity');
 
-const jsonFilePath = __dirname + '../../data/contextEmbeddings.json'; //.json file with original context and embeddings values
+const jsonFilePath = path.join(__dirname, '../data/contextEmbeddings.json'); //.json file with original context and embeddings values
 const contextResultValues = {text: '', similarityScore: 0} //Object to hold initial context values
 
 const getSimilarityContext = async (questionEmbeddingValues) => {
