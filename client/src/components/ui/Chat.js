@@ -18,14 +18,18 @@ const CHAT_MESSAGE_CLASS = {
 
 const ERROR_MESSAGE = 'Sorry, it seems that I am having some issues forwarding your request. Would you like to try again shortly?';
 
+let requestEndPoint;
+
+if(process.env.REACT_APP_ENVIRONMENT!=='local_dev') {
+    console.log('Making requests to live server on AWS Lambda.');
+    requestEndPoint = process.env.REACT_APP_SERVER_PROD_ENDPOINT;
+} else {
+    console.log('Making requests to local server.');
+    requestEndPoint = process.env.REACT_APP_SERVER_DEV_ENDPOINT;
+}
+
 const Chat = () => {
     const [message, setMessage] = useState([{text: '', className: ''}]);
-    let requestEndPoint = 'http://localhost:5050/api/openai';
-
-    if(process.env.REACT_APP_ENVIRONMENT!=='local_dev') {
-        console.log('Making requests to live server on AWS Lambda');
-        requestEndPoint = process.env.REQUEST_END_POINT;
-    }
 
     const handleSubmit = async (textData) => {
 
