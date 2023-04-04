@@ -4,9 +4,7 @@ function createPrompt(contextResponse, prompt) {
     const promptEndIndicator = ' ->';
     let finalPrompt = '';
 
-    console.log(contextResponse)
-
-    if(contextResponse !== 'undefined' && contextResponse !== null && contextResponse.similarityScore > 0.75) {
+    if(contextResponse !== 'undefined' && contextResponse !== null && contextResponse.similarityScore > 0.65) {
         finalPrompt = `Answer the question as truthfully as possible based on the context, and if you're unsure of the answer, say "Sorry, I don't know".
         Context:  ${contextResponse.text}
         Q: ${prompt}
@@ -16,8 +14,6 @@ function createPrompt(contextResponse, prompt) {
         Q: ${prompt}
         A:${promptEndIndicator}`;
     }
-
-    console.log(finalPrompt)
 
     return finalPrompt;
 }
