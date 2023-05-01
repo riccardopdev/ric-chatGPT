@@ -20,7 +20,7 @@ const ERROR_MESSAGE = 'Sorry, it seems that I am having some issues forwarding y
 
 let requestEndPoint;
 
-if(process.env.REACT_APP_ENVIRONMENT_PRODUCTION === 'true') {
+if (process.env.REACT_APP_ENVIRONMENT_PRODUCTION === 'true') {
     console.log('Making requests to live server on AWS Lambda.');
     requestEndPoint = process.env.REACT_APP_SERVER_PROD_ENDPOINT;
 } else {
@@ -29,25 +29,25 @@ if(process.env.REACT_APP_ENVIRONMENT_PRODUCTION === 'true') {
 }
 
 const Chat = () => {
-    const [message, setMessage] = useState([{text: '', className: ''}]);
+    const [message, setMessage] = useState([{ text: '', className: '' }]);
 
     const handleSubmit = async (textData) => {
 
         //Show user question on the chat
-        setMessage([...message, {text: textData.text, className: CHAT_MESSAGE_CLASS.PROMPT}]);
+        setMessage([...message, { text: textData.text, className: CHAT_MESSAGE_CLASS.PROMPT }]);
 
         try {
             //Show loading message
-            setMessage((previousMessages) => [...previousMessages, {text: 'Loading...', className: CHAT_MESSAGE_CLASS.LOADING}]);
+            setMessage((previousMessages) => [...previousMessages, { text: 'Loading...', className: CHAT_MESSAGE_CLASS.LOADING }]);
 
             //Send request to nodejs/express proxy
-            const response = await axios.post(requestEndPoint, {prompt: textData.text});
+            const response = await axios.post(requestEndPoint, { prompt: textData.text });
 
             //Show the response from openai API sent back to nodejs/express proxy
-            setMessage((previousMessages) => [...previousMessages, {text: response.data.message, className: CHAT_MESSAGE_CLASS.COMPLETION}]);
+            setMessage((previousMessages) => [...previousMessages, { text: response.data.message, className: CHAT_MESSAGE_CLASS.COMPLETION }]);
         } catch (error) {
             console.log(error);
-            setMessage((previousMessages) => [...previousMessages, {text: ERROR_MESSAGE, className: CHAT_MESSAGE_CLASS.ERROR}]);
+            setMessage((previousMessages) => [...previousMessages, { text: ERROR_MESSAGE, className: CHAT_MESSAGE_CLASS.ERROR }]);
         }
     }
 
